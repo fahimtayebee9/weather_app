@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Simple Weather Forecast using JavaScript OOP concept and ES6 Module" />
+    <meta name="description" content="Simple Weather Forecast using JavaScript OOP concept and ES6 Module" />
+    <meta name="author" content="Md. Fahim Tayebee" />
+    <meta name="keywords" content="WeatherForecastApp" />
+    <meta name="robots" content="all" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta property="og:image" content="assets/img/ss_main.png" />
+
+    <meta property="og:description" content="Simple Weather Forecast using JavaScript OOP concept and ES6 Module" />
+
+    <meta property="og:url" content="http://www.fahimtayebee.com" />
+    <meta property="og:title" content="WeatherForecastApp" />
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="assets/lib/bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+
+    <title>Weather Forecast</title>
+</head>
+
+<body id="body-div">
+
+    <section class="d-none align-items-center justify-content-center " id="preLoader-dv" style="min-height: 100vh;">
+        <div class="preloader">
+            <div class="loader">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="main" id="mainCon">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="sidebar vidCon" id="video-container">
+                        <video id="bg-video" preload="" autoplay="" muted="" playsinline="" loop="">
+                            <source src="" id="vid-src" type="video/mp4">
+                        </video>
+                        <div class="content">
+                            <p class="dt" id="sidebar-dt">July 31, 2021</p>
+                            <div class="location-widget">
+                                <h4 class="location" id="sidebar-location">
+                                    Dhaka
+                                </h4>
+                            </div>
+                            <div class="temp-widget">
+                                <p class="temp" id="sidebar-temp"><span class="value">+25</span>&#176</p>
+                                <div class="weather-icon-box">
+                                    <img src="assets/img/day-raint.png" class="img-fluid w-100" id="sidebarWeather-img" alt="">
+                                </div>
+                            </div>
+                            <div class="info-widget">
+                                <div class="row info-box">
+                                    <div class="col-md-4 info">
+                                        <h5 class="key">Wind</h5>
+                                        <p class="value" id="sidebar-wd">
+                                            <span class="value">+25</span>&#176
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 info">
+                                        <h5 class="key">Humidity</h5>
+                                        <p class="value" id="sidebar-hmd">Value</p>
+                                    </div>
+                                    <div class="col-md-4 info">
+                                        <h5 class="key">Pressure</h5>
+                                        <p class="value" id="sidebar-pr">Value</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-widget v2">
+                                <div class="row info-box">
+                                    <div class="col-md-6 info">
+                                        <img src="assets/img/sun-cloud.png" class="img-fluid w-25 text-center mb-2" alt="">
+                                        <h5 class="key">Sunrise</h5>
+                                        <p class="value" id="sidebar-sr">Value</p>
+                                    </div>
+                                    <div class="col-md-6 info">
+                                        <img src="assets/img/night-cloud.png" class="img-fluid w-25 text-center mb-2" alt="">
+                                        <h5 class="key">Sunset</h5>
+                                        <p class="value" id="sidebar-ss">Value</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="top-bar row justify-content-between align-items-center">
+                                <div class="col-md-4">
+                                    <div class="top-left">
+                                        <h1>Weather App</h1>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="top-right">
+                                        <div class="search-box">
+                                            <button class="btn-search"><i class="fas fa-search"></i></button>
+                                            <input type="text" class="input-search" id="searchField" placeholder="Type to Search...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="daily-widgets">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="tt">Daily Forecast</h4>
+                                    </div>
+                                </div>
+                                <div class="row" id="forcastList">
+                                    <!-- <div class="col-md-4 mb-3">
+                                        <div class="daily-box cloudy">
+                                            <p class="type">Sunny</p>
+                                            <div class="data-box">
+                                                <div class="temp-box">
+                                                    <h5 class="temp">
+                                                        <span class="value">+25</span>&#176
+                                                    </h5>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <div class="data-info">
+                                                    <p class="dt">Monday, 21 September</p>
+                                                    <p class="location"><i class="fas fa-map-marker-alt"></i>Location</p>
+                                                </div>
+                                                <div class="img-container">
+                                                    <img src="assets/img/sun-v2.png" class="img-fluid w-75" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="city-widgets">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="tt">Today Forecast Of Other Cities</h4>
+                                    </div>
+                                </div>
+                                <div class="row" id="country-list">
+                                    <!-- <div class="col-md-3 mb-3">
+                                        <div class="city-box day">
+                                            <div class="cityInfo-box d-flex justify-content-between align-items-center">
+                                                <p class="type">Country</p>
+                                                <p class="type">Day</p>
+                                            </div>
+                                            <div class="data-box">
+                                                <div class="img-container">
+                                                    <img src="assets/img/sun-smallCloud.png" class="img-fluid w-100" alt="">
+                                                </div>
+                                                <div class="temp-box mb-2">
+                                                    <h5 class="temp">25&#176</h5>
+                                                    <p class="type">Monterey</p>
+                                                </div>
+                                                <div class="info-widget">
+                                                    <div class="row info-box">
+                                                        <div class="col-md-4 info">
+                                                            <h5 class="key">Title</h5>
+                                                            <p class="value">Value</p>
+                                                        </div>
+                                                        <div class="col-md-4 info">
+                                                            <h5 class="key">Title</h5>
+                                                            <p class="value">Value</p>
+                                                        </div>
+                                                        <div class="col-md-4 info">
+                                                            <h5 class="key">Title</h5>
+                                                            <p class="value">Value</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script Area -->
+    <script src="assets/js/jquery-3.5.1.js"></script>
+    <script src="assets/lib/bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.lazy.min.js"></script>
+    <!-- <script src="node_modules/chart.js/auto" type="module"></script> -->
+    <script src="assets/js/script.js" type="module"></script>
+
+    <script>
+        // $(document).ready(function(){
+        //     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        //         e.target // active tab
+        //         e.relatedTarget // previous tab
+        //     })
+        // });
+    </script>
+
+</body>
+
+</html>
