@@ -41,7 +41,7 @@
     <section class="main" id="mainCon">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-12 col-sm-12 col-lg-3 col-md-4 lg-device">
                     <div class="sidebar vidCon" id="video-container">
                         <video id="bg-video" preload="" autoplay="" muted="" playsinline="" loop="">
                             <source src="" id="vid-src" type="video/mp4">
@@ -80,10 +80,6 @@
                                         <h5 class="key">Pressure</h5>
                                         <p class="value" id="sidebar-pr">Value</p>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="info-widget v2">
-                                <div class="row info-box">
                                     <div class="col-md-6 info">
                                         <img src="assets/img/sun-cloud.png" class="img-fluid w-25 text-center mb-2" alt="">
                                         <h5 class="key">Sunrise</h5>
@@ -99,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-12 col-sm-12 col-lg-9 col-md-12">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="top-bar row justify-content-between align-items-center">
@@ -112,18 +108,77 @@
                                     <div class="top-right">
                                         <div class="search-box">
                                             <button class="btn-search"><i class="fas fa-search"></i></button>
-                                            <input type="text" class="input-search" id="searchField" placeholder="Type to Search...">
+                                            <input type="text" class="input-search" list="suggetions" id="searchField" placeholder="Type to Search...">
+                                            <datalist id="suggetions">
+                                                <option value="Dhaka"></option>
+                                            </datalist>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-12 sm-device">
+                            <div class="sidebar vidCon" id="video-container">
+                                <video id="bg-video" preload="" autoplay="" muted="" playsinline="" loop="">
+                                    <source src="" id="vid-src" type="video/mp4">
+                                </video>
+                                <div class="content">
+                                    <p class="dt" id="sidebar-dt">July 31, 2021</p>
+                                    <div class="location-widget">
+                                        <h4 class="location" id="sidebar-location">
+                                            Dhaka
+                                        </h4>
+                                    </div>
+                                    <div class="temp-widget">
+                                        <p class="temp" id="sidebar-temp"><span class="value">+25</span>&#176</p>
+                                        <div class="weather-icon-box">
+                                            <img src="assets/img/day-raint.png" class="img-fluid w-100" id="sidebarWeather-img" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="info-widget">
+                                        <div class="row info-box">
+                                            <div class="col-4 col-sm-4 col-md-4 info ss-info">
+                                                <img src="assets/img/day-flow.png" class="img-fluid w-50 text-center dvc-991 mb-2" alt="">
+                                                <div class="txt">
+                                                    <h5 class="key">Wind</h5>
+                                                    <p class="value" id="sidebar-wd">
+                                                        <span class="value">+25</span>&#176
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 col-sm-4 col-md-4 info">
+                                                <img src="assets/img/high-temp.png" class="img-fluid w-25 text-center dvc-991 mb-2" alt="">
+                                                <h5 class="key">Humidity</h5>
+                                                <p class="value" id="sidebar-hmd">Value</p>
+                                            </div>
+                                            <div class="col-4 col-sm- 6 col-md-4 info">
+                                                <img src="assets/img/low-temp.png" class="img-fluid w-25 text-center dvc-991 mb-2" alt="">
+                                                <h5 class="key">Pressure</h5>
+                                                <p class="value" id="sidebar-pr">Value</p>
+                                            </div>
+                                            <div class="col-4 col-sm-4 col-md-4 info">
+                                                <img src="assets/img/sun-cloud.png" class="img-fluid w-25 text-center dvc-991 mb-2" alt="">
+                                                <h5 class="key">Sunrise</h5>
+                                                <p class="value" id="sidebar-sr">Value</p>
+                                            </div>
+                                            <div class="col-4 col-sm-4 col-md-4 info">
+                                                <img src="assets/img/night-cloud.png" class="img-fluid w-25 text-center dvc-991 mb-2" alt="">
+                                                <h5 class="key">Sunset</h5>
+                                                <p class="value" id="sidebar-ss">Value</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12  sm-device md-device">
                             <div class="daily-widgets">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h4 class="tt">Daily Forecast</h4>
                                     </div>
                                 </div>
-                                <div class="row" id="forcastList">
+                                <div class="row sm-castList" id="forcastList">
                                     <!-- <div class="col-md-4 mb-3">
                                         <div class="daily-box cloudy">
                                             <p class="type">Sunny</p>

@@ -16,6 +16,7 @@ export default class Element{
     static sidebarSunset       = document.querySelector('#sidebar-ss');
     static forcastList         = document.querySelector('#forcastList');
     static countryList         = document.querySelector('#country-list');
+    static suggetionsList      = document.querySelector('#suggetions');
     // Element.sidebarDate         = document.querySelector('#sidebar-dt');
     // Element.sidebarDate         = document.querySelector('#sidebar-dt');
 }

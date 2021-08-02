@@ -1,6 +1,7 @@
 export default class UrlManager{
     static apiKey           = "e4433d2b7999e8a413911398114ca617";
     static homeUrl          = `https://api.openweathermap.org/data/2.5`;
+    static teleportUrl      = `https://api.teleport.org/api/cities/?search=`;
 }
 
 UrlManager.prototype.createUrl = (domain,keys = [], values = []) => {

@@ -18,7 +18,6 @@ export default function App() {
         let keys    = ["units", "q", "lang"];
         let values  = ["metric", country, "en"];
         const data      = await ApiManager.fetchData(urlManager.createUrl("weather", keys, values));
-        // console.log(forecasts);
         if (data != null) {
             renderCountryWidget(data);
         }
@@ -28,7 +27,6 @@ export default function App() {
     const fetchAll = async (latitude, longitude, searchInput) => {
         let keys    = [];
         let values  = [];
-        console.log("lat " + latitude + "\nlong " + longitude );
         if(searchInput !== null){
             keys    = ["units", "q", "lang"];
             values  = ["metric", searchInput, "en"];
@@ -40,7 +38,6 @@ export default function App() {
 
         const data      = await ApiManager.fetchData(urlManager.createUrl("weather", keys, values));
         const forecasts = await ApiManager.fetchData(urlManager.createUrl("forecast", keys, values));
-        // console.log(forecasts);
         if (data != null) {
             renderSidebar(data);
             renderForecast(forecasts);
@@ -80,7 +77,7 @@ export default function App() {
             const urls  = filterIcon(day.weather[0]);
             let hours   = date.getHours();
             if (hours === 12) {
-                let dayForecast = `<div class="col-md-4 mb-3">
+                let dayForecast = `<div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3 sm-col">
                                         <div class="daily-box ${getDivClass(day.weather[0].main)}">
                                             <p class="type">${day.weather[0].main == "Rain" ? "Rainy" : day.weather[0].main == "Clear" ? "Sunny" : "Cloudy" }</p>
                                             <div class="data-box">
@@ -88,8 +85,7 @@ export default function App() {
                                                     <h5 class="temp">
                                                         <span class="value">
                                                             ${day.main.temp >= 0 ? `+${Math.round(day.main.temp)}` : `-${Math.round(day.main.temp)}`}
-                                                        </span>
-                                                        &#176
+                                                        </span>&#176
                                                     </h5>
                                                 </div>
                                                 <div class="divider"></div>
@@ -139,15 +135,34 @@ export default function App() {
 
     const searchAction = async (event) => {
         let value = Element.searchField.value;
+        const value_arr = value.split(",");
         if(event.keyCode === 13 && value == null || value == ""){
             
         }
         else if(event.keyCode === 13){
-            await fetchAll(null,null, value);
+            await fetchAll(null,null, value_arr[0].trim());
         }
     }
 
+    const renderOption = (value) => {
+        const option = document.createElement('option');
+        option.setAttribute('value', value);
+        option.textContent = value;
+        Element.suggetionsList.appendChild(option);
+    }
+
+    const populateDataList = async () => {
+        Element.suggetionsList.innerHTML = "";
+        let input = Element.searchField.value;
+
+        const data      = await ApiManager.fetchData(UrlManager.teleportUrl + input);
+        data._embedded['city:search-results'].forEach(item => {
+            renderOption(item.matching_full_name);
+        });
+    }
+
     const eventListeners = () => {
+        Element.searchField.addEventListener("keyup",populateDataList);
         Element.searchField.addEventListener("keydown",searchAction);
         Element.btnSearch.addEventListener("click",searchAction);
     }
@@ -179,18 +194,18 @@ export default function App() {
 
     const renderCountryWidget = (data) => {
         const urls  = filterIcon(data.weather[0]);
-        let dayForecast = `<div class="col-md-4 mb-3">
+        let dayForecast = `<div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 sm-col">
                                     <div class="city-box ${data.weather[0].id == 800 ? "day" : "night"}">
                                         <div class="cityInfo-box d-flex justify-content-between align-items-center">
                                             <p class="type ${data.weather[0].id == 800 ? "black" : "white"}">${data.name.substring(0, 15)}</p>
                                         </div>
                                         <div class="data-box">
-                                            <div class="img-container" style="transform: translate(-50%,-100%);">
-                                                <img src="${urls[0]}" class="img-fluid ${data.weather[0].id == 800 ? "w-75" : "w-100"}" alt="">
+                                            <div class="img-container">
+                                                <img src="${urls[0]}" class="img-fluid ${data.weather[0].id == 800 ? "w-75" : "w-100"} sm-img" alt="">
                                             </div>
                                             <div class="temp-box mb-2">
                                                 <h5 class="temp ${data.weather[0].id == 800 ? "black" : "white"}">
-                                                    <span class="value">
+                                                    <span class="value sm-tt">
                                                         ${data.main.temp >= 0 ? `+${Math.round(data.main.temp)}` : `-${Math.round(data.main.temp)}`}
                                                     </span>
                                                     &#176
@@ -198,8 +213,8 @@ export default function App() {
                                                 <p class="type ${data.weather[0].id == 800 ? "black" : "white"}">${data.weather[0].main}</p>
                                             </div>
                                             <div class="info-widget">
-                                                <div class="row info-box">
-                                                    <div class="col-md-4 info">
+                                                <div class="row info-box sm-info">
+                                                    <div class="col-6 col-sm-6 col-md-4 info sm-mr">
                                                         <h5 class="key ${data.weather[0].id == 800 ? "black" : "white"}">Wind</h5>
                                                         <p class="value ${data.weather[0].id == 800 ? "black" : "white"}" id="sidebar-wd">
                                                             <span class="value ${data.weather[0].id == 800 ? "black" : "white"}">
@@ -208,11 +223,11 @@ export default function App() {
                                                             &#176
                                                         </p>
                                                     </div>
-                                                    <div class="col-md-4 info ">
+                                                    <div class="col-6 col-sm-6 col-md-4 info sm-mr">
                                                         <h5 class="key ${data.weather[0].id == 800 ? "black" : "white"}">Humidity</h5>
                                                         <p class="value ${data.weather[0].id == 800 ? "black" : "white"}" id="sidebar-hmd">${data.main.humidity}%</p>
                                                     </div>
-                                                    <div class="col-md-4 info">
+                                                    <div class="col-6 col-sm-6 col-md-4 info">
                                                         <h5 class="key ${data.weather[0].id == 800 ? "black" : "white"}">Pressure</h5>
                                                         <p class="value ${data.weather[0].id == 800 ? "black" : "white"}" id="sidebar-pr">${data.main.pressure} hPa</p>
                                                     </div>
