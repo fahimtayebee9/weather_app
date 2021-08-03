@@ -12,8 +12,6 @@ export default function App() {
     App.timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true};
     App.displayCount= true;
 
-    // const chartJs = require('../../../node_modules/chart.js/helpers');
-
     const fetchData = async (country) => {
         let keys    = ["units", "q", "lang"];
         let values  = ["metric", country, "en"];
@@ -40,6 +38,7 @@ export default function App() {
         const forecasts = await ApiManager.fetchData(urlManager.createUrl("forecast", keys, values));
         if (data != null) {
             renderSidebar(data);
+            renderSidebarSm(data);
             renderForecast(forecasts);
         }
     };
@@ -53,6 +52,18 @@ export default function App() {
         setValue(Element.sidebarWind, `${calculateWindDirection(data.wind.deg)}, ${data.wind.deg}` , null);
         setValue(Element.sidebarHumidity, data.main.humidity + "%" , null);
         setValue(Element.sidebarPressure, data.main.pressure + " hPa" , null);
+        renderImageVideos(data.weather[0]);
+    }
+
+    const renderSidebarSm = (data) => {
+        setValue(Element.sidebarLocationSm, data.name + "," + data.sys.country, null);
+        setValue(Element.sidebarTempSm, data.main.temp >= 0 ? `+${Math.round(data.main.temp)}` : `-${Math.round(data.main.temp)}` , null);
+        setValue(Element.sidebarDateSm, new Date().toLocaleDateString('en-US', App.dateOptions) , null);
+        setValue(Element.sidebarSunriseSm, new Date(data.sys.sunrise * 1000).toLocaleTimeString('en-US',App.timeOptions) , null);
+        setValue(Element.sidebarSunsetSm, new Date(data.sys.sunset * 1000).toLocaleTimeString('en-US',App.timeOptions) , null);
+        setValue(Element.sidebarWindSm, `${calculateWindDirection(data.wind.deg)}, ${data.wind.deg}` , null);
+        setValue(Element.sidebarHumiditySm, data.main.humidity + "%" , null);
+        setValue(Element.sidebarPressureSm, data.main.pressure + " hPa" , null);
         renderImageVideos(data.weather[0]);
     }
 
@@ -84,8 +95,8 @@ export default function App() {
                                                 <div class="temp-box">
                                                     <h5 class="temp">
                                                         <span class="value">
-                                                            ${day.main.temp >= 0 ? `+${Math.round(day.main.temp)}` : `-${Math.round(day.main.temp)}`}
-                                                        </span>&#176
+                                                            ${day.main.temp >= 0 ? `+${Math.round(day.main.temp)}` : `-${Math.round(day.main.temp)}`}°
+                                                        </span>
                                                     </h5>
                                                 </div>
                                                 <div class="divider"></div>
@@ -128,9 +139,13 @@ export default function App() {
     const renderImageVideos = (weather) => {
         const urls = filterIcon(weather);
         setValue(Element.sidebarWtImg, urls[0], "img");
+        setValue(Element.sidebarWtImgSm, urls[0], "img");
         Element.vidSrc.setAttribute('src', urls[1]);
         Element.bgVideo.load();
         Element.bgVideo.play();
+        Element.vidSrcSm.setAttribute('src', urls[1]);
+        Element.bgVideoSm.load();
+        Element.bgVideoSm.play();
     }
 
     const searchAction = async (event) => {

@@ -17,6 +17,17 @@ export default class Element{
     static forcastList         = document.querySelector('#forcastList');
     static countryList         = document.querySelector('#country-list');
     static suggetionsList      = document.querySelector('#suggetions');
-    // Element.sidebarDate         = document.querySelector('#sidebar-dt');
-    // Element.sidebarDate         = document.querySelector('#sidebar-dt');
+
+    static videoContainerSm    = document.querySelector('#sm-video-container');
+    static bgVideoSm           = document.querySelector('#sm-bg-video');
+    static vidSrcSm            = document.querySelector('#sm-vid-src');
+    static sidebarDateSm       = document.querySelector('#sm-sidebar-dt');
+    static sidebarLocationSm   = document.querySelector('#sm-sidebar-location');
+    static sidebarTempSm       = document.querySelector('#sm-sidebar-temp>.value');
+    static sidebarWtImgSm      = document.querySelector('#sm-sidebarWeather-img');
+    static sidebarWindSm       = document.querySelector('#sm-sidebar-wd>.value');
+    static sidebarHumiditySm   = document.querySelector('#sm-sidebar-hmd');
+    static sidebarPressureSm   = document.querySelector('#sm-sidebar-pr');
+    static sidebarSunriseSm    = document.querySelector('#sm-sidebar-sr');
+    static sidebarSunsetSm     = document.querySelector('#sm-sidebar-ss');
 }

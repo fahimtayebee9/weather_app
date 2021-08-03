@@ -95,16 +95,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-lg-9 col-md-12">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="top-bar row justify-content-between align-items-center">
-                                <div class="col-md-4">
+                                <div class="col-10 col-sm-6 col-lg-4 col-md-6 sm-top">
                                     <div class="top-left">
                                         <h1>Weather App</h1>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-10 col-sm-6 col-lg-4 col-md-6 sm-top">
                                     <div class="top-right">
                                         <div class="search-box">
                                             <button class="btn-search"><i class="fas fa-search"></i></button>
@@ -118,53 +118,57 @@
                             </div>
                         </div>
                         <div class="col-md-12 sm-device">
-                            <div class="sidebar vidCon" id="video-container">
-                                <video id="bg-video" preload="" autoplay="" muted="" playsinline="" loop="">
-                                    <source src="" id="vid-src" type="video/mp4">
+                            <div class="sidebar vidCon" id="sm-video-container">
+                                <video id="sm-bg-video" preload="" autoplay="" muted="" playsinline="" loop="">
+                                    <source src="" id="sm-vid-src" type="video/mp4">
                                 </video>
-                                <div class="content">
-                                    <p class="dt" id="sidebar-dt">July 31, 2021</p>
-                                    <div class="location-widget">
-                                        <h4 class="location" id="sidebar-location">
-                                            Dhaka
-                                        </h4>
-                                    </div>
-                                    <div class="temp-widget">
-                                        <p class="temp" id="sidebar-temp"><span class="value">+25</span>&#176</p>
-                                        <div class="weather-icon-box">
-                                            <img src="assets/img/day-raint.png" class="img-fluid w-100" id="sidebarWeather-img" alt="">
+                                <div class="content dvc-1199-main row">
+                                    <div class="dvc-1199 col-md-10 col-lg-3 m-auto text-left">
+                                        <p class="dt" id="sm-sidebar-dt">July 31, 2021</p>
+                                        <div class="location-widget">
+                                            <h4 class="location" id="sm-sidebar-location">
+                                                Dhaka
+                                            </h4>
                                         </div>
                                     </div>
-                                    <div class="info-widget">
+                                    <div class="dvc-1199 col-md-10 col-lg-3 m-auto">
+                                        <div class="temp-widget text-center">
+                                            <div class="weather-icon-box">
+                                                <img src="assets/img/day-raint.png" class="img-fluid w-100" id="sm-sidebarWeather-img" alt="">
+                                            </div>
+                                            <p class="temp" id="sm-sidebar-temp"><span class="value">+25</span>&#176</p>
+                                        </div>
+                                    </div>
+                                    <div class="info-widget col-md-10 col-lg-6 m-auto">
                                         <div class="row info-box">
                                             <div class="col-4 col-sm-4 col-md-4 info ss-info">
-                                                <img src="assets/img/day-flow.png" class="img-fluid w-50 text-center dvc-991 mb-2" alt="">
+                                                <img src="assets/img/day-flow.png" class="img-fluid w-50 text-center dvc-991 dvc-1199-img" alt="">
                                                 <div class="txt">
                                                     <h5 class="key">Wind</h5>
-                                                    <p class="value" id="sidebar-wd">
+                                                    <p class="value" id="sm-sidebar-wd">
                                                         <span class="value">+25</span>&#176
                                                     </p>
                                                 </div>
                                             </div>
                                             <div class="col-4 col-sm-4 col-md-4 info">
-                                                <img src="assets/img/high-temp.png" class="img-fluid w-25 text-center dvc-991 mb-2" alt="">
+                                                <img src="assets/img/high-temp.png" class="img-fluid w-25 text-center dvc-991" alt="">
                                                 <h5 class="key">Humidity</h5>
-                                                <p class="value" id="sidebar-hmd">Value</p>
+                                                <p class="value" id="sm-sidebar-hmd">Value</p>
                                             </div>
                                             <div class="col-4 col-sm- 6 col-md-4 info">
-                                                <img src="assets/img/low-temp.png" class="img-fluid w-25 text-center dvc-991 mb-2" alt="">
+                                                <img src="assets/img/low-temp.png" class="img-fluid w-25 text-center dvc-991 " alt="">
                                                 <h5 class="key">Pressure</h5>
-                                                <p class="value" id="sidebar-pr">Value</p>
+                                                <p class="value" id="sm-sidebar-pr">Value</p>
                                             </div>
-                                            <div class="col-4 col-sm-4 col-md-4 info">
-                                                <img src="assets/img/sun-cloud.png" class="img-fluid w-25 text-center dvc-991 mb-2" alt="">
+                                            <div class="col-4 col-sm-4 col-md-4 info ">
+                                                <img src="assets/img/sun-cloud.png" class="img-fluid w-25 text-center dvc-991" alt="">
                                                 <h5 class="key">Sunrise</h5>
-                                                <p class="value" id="sidebar-sr">Value</p>
+                                                <p class="value" id="sm-sidebar-sr">Value</p>
                                             </div>
-                                            <div class="col-4 col-sm-4 col-md-4 info">
-                                                <img src="assets/img/night-cloud.png" class="img-fluid w-25 text-center dvc-991 mb-2" alt="">
+                                            <div class="col-4 col-sm-4 col-md-4 info ">
+                                                <img src="assets/img/night-cloud.png" class="img-fluid w-25 text-center dvc-991 " alt="">
                                                 <h5 class="key">Sunset</h5>
-                                                <p class="value" id="sidebar-ss">Value</p>
+                                                <p class="value" id="sm-sidebar-ss">Value</p>
                                             </div>
                                         </div>
                                     </div>
